@@ -1,0 +1,45 @@
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) break main
+Breakpoint 1 at 0x823: file p2original.c, line 37.
+(gdb) r
+Starting program: /home/runner/pps-IA1-practice/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p2original.c:37
+37    {
+(gdb) n
+39      input(&a, &b, &c);
+(gdb) n
+Enter the first number: 2
+Enter the second number: 3
+Enter the third number: 4
+40      cmp(a, b, c, &largest);
+(gdb) n
+41      output(largest);
+(gdb) n
+42      return 0;
+(gdb) n
+43    }(gdb) n
+__libc_start_main (main=0x561fe3c0081b <main>, argc=1, argv=0x7fff0c7a7f48, 
+    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
+    stack_end=0x7fff0c7a7f38) at ../csu/libc-start.c:344
+344 ../csu/libc-start.c: No such file or directory.
+(gdb) n
+The largest number present is: 4[Inferior 1 (process 559) exited normally]
+(gdb) n
+The program is not being run.
+(gdb) 
