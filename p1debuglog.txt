@@ -15,7 +15,7 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
-(gdb) break main
+(gdb) b main
 Breakpoint 1 at 0x7fc: file p1original.c, line 16.
 (gdb) r
 Starting program: /home/runner/pps-IA1-practice/a.out 
@@ -23,24 +23,40 @@ warning: Error disabling address space randomization: Operation not permitted
 
 Breakpoint 1, main () at p1original.c:16
 16  int main(){
-(gdb) n
+(gdb) s
 18    input(&a,&b);
+(gdb) s
+input (a=0x7ffcbd3095dc, b=0x7ffcbd3095e0) at p1original.c:4
+4     printf("Enter 2 numbers\n");
 (gdb) n
 Enter 2 numbers
+5     scanf("%d%d",a,b);
+(gdb) n
 1
 2
+6   }
+(gdb) n
+main () at p1original.c:19
 19    add(a,b,&sum);
+(gdb) s
+add (a=1, b=2, sum=0x7ffcbd3095e4) at p1original.c:9
+9     *sum=a+b;
 (gdb) n
+10  }
+(gdb) n
+main () at p1original.c:20
 20    output(a,b,sum);
+(gdb) s
+output (a=1, b=2, sum=3) at p1original.c:13
+13    printf("the sum %d + %d = %d",a,b,sum);
 (gdb) n
+14  }
+(gdb) p sum
+$1 = 3
+(gdb) n
+main () at p1original.c:21
 21    return 0;
-(gdb) n
-22  }(gdb) n
-__libc_start_main (main=0x5638612007f4 <main>, argc=1, argv=0x7ffe69815398, 
-    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
-    stack_end=0x7ffe69815388) at ../csu/libc-start.c:344
-344 ../csu/libc-start.c: No such file or directory.
-(gdb) n
-the sum 1 + 2 = 3[Inferior 1 (process 609) exited normally]
-(gdb) n
-The program is not being run.
+(gdb) c
+Continuing.
+the sum 1 + 2 = 3[Inferior 1 (process 614) exited normally]
+(gdb) q
