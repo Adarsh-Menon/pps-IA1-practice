@@ -1,4 +1,4 @@
- gcc -g p5original.c
+gcc -g p5original.c
  gdb a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
 Copyright (C) 2018 Free Software Foundation, Inc.
@@ -15,19 +15,93 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
-(gdb) break main
-Breakpoint 1 at 0x868: file p5original.c, line 30.
+(gdb) b main
+Breakpoint 1 at 0x82b: file p5original.c, line 32.
 (gdb) r
 Starting program: /home/runner/pps-IA1-practice/a.out 
 warning: Error disabling address space randomization: Operation not permitted
 
-Breakpoint 1, main () at p5original.c:30
-30    n = input();
+Breakpoint 1, main () at p5original.c:32
+32    n = input();
+(gdb) s
+input () at p5original.c:5
+5   {
 (gdb) n
-enter the square root number
-25 
-31    s = sq(n);
+7     printf("Enter a number to find the sqaure root of: ");
 (gdb) n
-32    output(n, s);
+8     scanf("%f", &n);
+(gdb) n
+Enter a number to find the sqaure root of: 25
+9     return n;
+(gdb) p n
+$1 = 25
+(gdb) n
+10  }
+(gdb) n
+main () at p5original.c:33
+33    sr_res = sr(n);
+(gdb) s
+sr (n=25) at p5original.c:15
+15    res = n/2;
+(gdb) n
+16    t = 0;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+22    return res;
+(gdb) p res
+$2 = 5
+(gdb) n
+23  }
+(gdb) n
+main () at p5original.c:34
+34    output(n, sr_res);
+(gdb) s
+output (n=25, sr_res=5) at p5original.c:26
+26    printf("Square root of given input %0.2f is = %0.2f \n", n, sr_res);
 (gdb) n
 Square root of given input 25.00 is = 5.00 
+27  }
+(gdb) n
+main () at p5original.c:35
+35    return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 42) exited normally]
+(gdb) q

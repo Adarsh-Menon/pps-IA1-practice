@@ -1,4 +1,4 @@
- gcc -g p6original.c
+gcc -g p6original.c
  gdb a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
 Copyright (C) 2018 Free Software Foundation, Inc.
@@ -15,7 +15,7 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
-(gdb) break main
+(gdb) b main
 Breakpoint 1 at 0x8b4: file p6original.c, line 40.
 (gdb) r
 Starting program: /home/runner/pps-IA1-practice/a.out 
@@ -25,24 +25,51 @@ Breakpoint 1, main () at p6original.c:40
 40  {
 (gdb) n
 43    input(m,n);
+(gdb) s
+input (m=0x7fff73132980 "\001", n=0x7fff731329a0 " \t`O\356U")
+    at p6original.c:5
+5       printf("Enter the First String: ");
 (gdb) n
-Enter the First String: today
-Enter the Second String: today
+6       scanf("%s", m);
+(gdb) n
+Enter the First String: hi
+7       printf("Enter the Second String: ");
+(gdb) n
+8       scanf("%s", n);
+(gdb) n
+Enter the Second String: hi
+9   }
+(gdb) n
+main () at p6original.c:44
 44    ans = strcmp(m,n);
+(gdb) s
+strcmp (m=0x7fff73132980 "hi", n=0x7fff731329a0 "hi") at p6original.c:16
+16      for(i=0; m[i] && (m[i] == n[i]); i++);
 (gdb) n
+17      total=m[i]-n[i];
+(gdb) n
+18      return total;
+(gdb) p total
+$1 = 0
+(gdb) n
+19  }
+(gdb) n
+main () at p6original.c:45
 45    output(m , n, ans);
+(gdb) s
+output (m=0x7fff73132980 "hi", n=0x7fff731329a0 "hi", ans=0) at p6original.c:24
+24      if(ans < 0)
 (gdb) n
-today is = to today
+28      else if(ans > 0)
+(gdb) n
+34         printf("%s is = to %s\n",n,m);
+(gdb) n
+hi is = to hi
+36  }
+(gdb) n
+main () at p6original.c:46
 46    return 0;
-(gdb) n
-47  }(gdb) n
-__libc_start_main (main=0x555b4d6008ac <main>, argc=1, 
-    argv=0x7ffe0935af08, init=<optimized out>, fini=<optimized out>, 
-    rtld_fini=<optimized out>, stack_end=0x7ffe0935aef8)
-    at ../csu/libc-start.c:344
-344 ../csu/libc-start.c: No such file or directory.
-(gdb) n
-[Inferior 1 (process 424) exited normally]
-(gdb) n
-The program is not being run.
-(gdb) n
+(gdb) c
+Continuing.
+[Inferior 1 (process 81) exited normally]
+(gdb) q

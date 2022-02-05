@@ -1,34 +1,36 @@
 #include<stdio.h>
+#include<math.h>
 
-float input(){
+float input()
+{
   float n;
-  printf("enter the square root number\n");
-  scanf("%f",&n);
+  printf("Enter a number to find the sqaure root of: ");
+  scanf("%f", &n);
   return n;
 }
 
-float sq(float n)
+float sr(float n)
 {
-  float x = n;
-  float y = 1;
-  float e = 0.000001;
-  while (x - y > e)
+  float res,t;
+  res = n/2;
+  t = 0;
+  while(fabs(res - t)>0.0000001)
   {
-    x  = (x + y) / 2;
-    y = n / x; 
+    t = res;
+    res = ( (n/t) + t) / 2;
   }
-  return x;
+  return res;
 }
-void output(float n, float s)
+void output(float n, float sr_res)
 {
-  printf("Square root of given input %0.2f is = %0.2f \n", n, s);
+  printf("Square root of given input %0.2f is = %0.2f \n", n, sr_res);
 }
 
 int main()
 {
-  float n, s;
+  float n, sr_res;
   n = input();
-  s = sq(n);
-  output(n, s);
+  sr_res = sr(n);
+  output(n, sr_res);
   return 0;
 }

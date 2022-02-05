@@ -1,3 +1,5 @@
+gcc -g p2original.c
+ gdb a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
 Copyright (C) 2018 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -13,7 +15,7 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
-(gdb) break main
+(gdb) b main
 Breakpoint 1 at 0x823: file p2original.c, line 37.
 (gdb) r
 Starting program: /home/runner/pps-IA1-practice/a.out 
@@ -23,23 +25,49 @@ Breakpoint 1, main () at p2original.c:37
 37    {
 (gdb) n
 39      input(&a, &b, &c);
+(gdb) s
+input (a=0x7fff4ea7ac08, b=0x7fff4ea7ac0c, c=0x7fff4ea7ac10)
+    at p2original.c:5
+5       printf("Enter the first number: ");
+(gdb) n
+6       scanf("%d", a);
 (gdb) n
 Enter the first number: 2
+7       printf("Enter the second number: ");
+(gdb) n
+8       scanf("%d", b);
+(gdb) n
 Enter the second number: 3
-Enter the third number: 4
+9       printf("Enter the third number: ");
+(gdb) n
+10      scanf("%d", c);
+(gdb) n
+Enter the third number: 6
+11    }
+(gdb) n
+main () at p2original.c:40
 40      cmp(a, b, c, &largest);
+(gdb) s
+cmp (a=2, b=3, c=6, largest=0x7fff4ea7ac14) at p2original.c:15
+15     if(a>=b&&a>c)
 (gdb) n
+19     else if(b>c)
+(gdb) n
+25            *largest=c;
+(gdb) n
+27   }
+(gdb) n
+main () at p2original.c:41
 41      output(largest);
+(gdb) s
+output (largest=6) at p2original.c:32
+32      printf("The largest number present is: %d", largest);
 (gdb) n
+33    }
+(gdb) n
+main () at p2original.c:42
 42      return 0;
-(gdb) n
-43    }(gdb) n
-__libc_start_main (main=0x561fe3c0081b <main>, argc=1, argv=0x7fff0c7a7f48, 
-    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
-    stack_end=0x7fff0c7a7f38) at ../csu/libc-start.c:344
-344 ../csu/libc-start.c: No such file or directory.
-(gdb) n
-The largest number present is: 4[Inferior 1 (process 559) exited normally]
-(gdb) n
-The program is not being run.
-(gdb) 
+(gdb) c
+Continuing.
+The largest number present is: 6[Inferior 1 (process 182) exited normally]
+(gdb) q

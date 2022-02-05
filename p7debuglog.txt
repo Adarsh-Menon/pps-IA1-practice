@@ -1,4 +1,4 @@
- gcc -g p7original.c
+gcc -g p7original.c
  gdb a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
 Copyright (C) 2018 Free Software Foundation, Inc.
@@ -15,7 +15,7 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
-(gdb) break main
+(gdb) b main
 Breakpoint 1 at 0x856: file p7original.c, line 37.
 (gdb) r
 Starting program: /home/runner/pps-IA1-practice/a.out 
@@ -23,18 +23,77 @@ warning: Error disabling address space randomization: Operation not permitted
 
 Breakpoint 1, main () at p7original.c:37
 37    a= input();
+(gdb) s
+input () at p7original.c:8
+8   complex input(){
+(gdb) s
+10    printf("enter your real part of the number");
+(gdb) n
+11    scanf("%f",&a.real);
 (gdb) n
 enter your real part of the number2
+12    printf("enter your imaginery part of the number");
+(gdb) n
+13    scanf("%f",&a.imaginery);
+(gdb) n
 enter your imaginery part of the number3
+14    return a;
+(gdb) p a
+$1 = {real = 2, imaginery = 3}
+(gdb) n
+15  }
+(gdb) n
+main () at p7original.c:38
 38    b= input();
+(gdb) s
+input () at p7original.c:8
+8   complex input(){
+(gdb) s
+10    printf("enter your real part of the number");
 (gdb) n
-enter your real part of the number4
-enter your imaginery part of the number5
+11    scanf("%f",&a.real);
+(gdb) n
+enter your real part of the number5
+12    printf("enter your imaginery part of the number");
+(gdb) n
+13    scanf("%f",&a.imaginery);
+(gdb) n
+enter your imaginery part of the number1
+14    return a;
+(gdb) p a
+$2 = {real = 5, imaginery = 1}
+(gdb) n
+15  }
+(gdb) n
+main () at p7original.c:39
 39    sum= summ(a,b);
+(gdb) s
+summ (a=..., b=...) at p7original.c:20
+20    sum.real=a.real + b.real;
 (gdb) n
+21    sum.imaginery= a.imaginery+ b.imaginery;
+(gdb) n
+22    return sum;
+(gdb) p sum
+$3 = {real = 7, imaginery = 4}
+(gdb) n
+23  }
+(gdb) n
+main () at p7original.c:40
 40    output(a,b,sum);
+(gdb) s
+output (a=..., b=..., sum=...) at p7original.c:29
+29    printf("the sum of %0.1f + %0.1fi and %0.1f + %0.1fi is %0.1f + %0.1fi\n ",a.real, a.imaginery, b.real, b.imaginery, sum.real, sum.imaginery);
 (gdb) n
-the sum of 2.0 + 3.0i and 4.0 + 5.0i is 6.0 + 8.0i
+the sum of 2.0 + 3.0i and 5.0 + 1.0i is 7.0 + 4.0i
+30  }
+(gdb) n
+main () at p7original.c:41
 41    return 0;
+(gdb) c
+Continuing.
+ [Inferior 1 (process 35) exited normally]
 (gdb) n
-42  }(gdb) n
+The program is not being run.
+(gdb) q
+ 

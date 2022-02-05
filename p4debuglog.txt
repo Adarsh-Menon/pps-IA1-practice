@@ -1,3 +1,80 @@
+gcc -g p5original.c
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x82b: file p5original.c, line 32.
+(gdb) r
+Starting program: /home/runner/pps-IA1-practice/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p5original.c:32
+32    n = input();
+(gdb) s
+input () at p5original.c:5
+5   {
+(gdb) n
+7     printf("Enter a number to find the sqaure root of: ");
+(gdb) n
+8     scanf("%f", &n);
+(gdb) n
+Enter a number to find the sqaure root of: 25
+9     return n;
+(gdb) p n
+$1 = 25
+(gdb) n
+10  }
+(gdb) n
+main () at p5original.c:33
+33    sr_res = sr(n);
+(gdb) s
+sr (n=25) at p5original.c:15
+15    res = n/2;
+(gdb) n
+16    t = 0;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+20      res = ( (n/t) + t) / 2;
+(gdb) n
+17    while(fabs(res - t)>0.0000001)
+(gdb) n
+19      t = res;
+(gdb) n
+ 
  gcc -g p4original.c
  gdb a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
@@ -15,7 +92,7 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from a.out...done.
-(gdb) break main
+(gdb) b main
 Breakpoint 1 at 0x8f6: file p4original.c, line 34.
 (gdb) r
 Starting program: /home/runner/pps-IA1-practice/a.out 
@@ -25,28 +102,87 @@ Breakpoint 1, main () at p4original.c:34
 34  {
 (gdb) n
 35      int n = input();
+(gdb) s
+input () at p4original.c:3
+3   int input(){
+(gdb) s
+5       printf("Enter the given number");
+(gdb) n
+6       scanf("%d", &n);
 (gdb) n
 Enter the given number2
+7       return n;
+(gdb) p n
+$1 = 2
+(gdb) n
+8   }
+(gdb) n
+main () at p4original.c:36
 36      int a[n];
 (gdb) n
 37      arrayyy(n, a);
+(gdb) s
+arrayyy (n=2, a=0x7ffc4cf15ee0) at p4original.c:11
+11    for(int i=0; i<n; i++){
+(gdb) n
+12      printf("enter the number\n");
 (gdb) n
 enter the number
-2
+13      scanf("%d",&a[i]);
+(gdb) n
+1
+11    for(int i=0; i<n; i++){
+(gdb) n
+12      printf("enter the number\n");
+(gdb) n
 enter the number
-3
+13      scanf("%d",&a[i]);
+(gdb) n
+5
+11    for(int i=0; i<n; i++){
+(gdb) n
+15  }
+(gdb) n
+main () at p4original.c:38
 38      int sum = summ(n, a);
+(gdb) s
+summ (n=2, a=0x7ffc4cf15ee0) at p4original.c:19
+19      int sum=0;
 (gdb) n
+20      for(int i=0; i<n; i++){
+(gdb) n
+21          sum += a[i];
+(gdb) n
+20      for(int i=0; i<n; i++){
+(gdb) n
+21          sum += a[i];
+(gdb) n
+20      for(int i=0; i<n; i++){
+(gdb) n
+23      return sum;
+(gdb) p sum
+$2 = 6
+(gdb) n
+24  }
+(gdb) n
+main () at p4original.c:39
 39      output(n, a, sum);
+(gdb) s
+output (n=2, a=0x7ffc4cf15ee0, sum=6) at p4original.c:27
+27    for(int i=0; i<(n-1); i++){
 (gdb) n
-2+3=5
+28      printf("%d+",a[i]);
+(gdb) n
+27    for(int i=0; i<(n-1); i++){
+(gdb) n
+30    printf("%d=%d\n",a[n-1],sum);
+(gdb) n
+1+5=6
+31  }
+(gdb) n
+main () at p4original.c:40
 40      return 0;
-(gdb) n
-41  }(gdb) n
-__libc_start_main (main=0x56226f0008e5 <main>, argc=1, argv=0x7ffebf7fb0c8, 
-    init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>, 
-    stack_end=0x7ffebf7fb0b8) at ../csu/libc-start.c:344
-344 ../csu/libc-start.c: No such file or directory.
-(gdb) n
-[Inferior 1 (process 1072) exited normally]
-(gdb) n
+(gdb) c
+Continuing.
+[Inferior 1 (process 77) exited normally]
+(gdb) q
